@@ -18,5 +18,10 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', include('blog.urls'))
+    # chops of blog/ passes the rest to the given urls module
+    # 'blog/' is a route
+
+    # coding path like that, Blog app now is being the homepage of the entire website.
+    # this will return the blog home page
+    path('', include('blog.urls')),
 ]
