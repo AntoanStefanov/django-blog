@@ -22,6 +22,7 @@ urlpatterns = [
     # 'blog/' is a route
 
     # coding path like that, Blog app now is being the homepage of the entire website.
-    # this will return the blog home page
+    # this will return the blog home page (making website home page same as home page of the blog app)
+    # /about will hit this empty string and go to the about page of the blog, crazy stuff
     path('', include('blog.urls')),
 ]
