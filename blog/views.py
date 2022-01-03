@@ -1,10 +1,14 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 
 # Create your views here.
-# view = page ? 
+# view = page
+# A view always return an HTTP Response or an Exception.
+
+
 def home(request):
-    return HttpResponse('<h1>Blog Home</h1>')
+    # django needs the path from the templates folder in current app to the specific template
+    return render(request, 'blog/home.html')
+
 
 def about(request):
-    return HttpResponse('<h1>Blog About</h1>')
+    return render(request, 'blog/about.html')
