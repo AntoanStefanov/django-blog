@@ -38,3 +38,12 @@ class Post(models.Model):
 
     # Changes for the database were coded.
     # Now we need to make migrations, and update the database with these migrations - migrate.
+
+    # Make the post objects descriptive - > dunder str method (double underscore, magic method, special method)
+    def __str__(self):
+        # return how we want this to be printed out
+        return self.title
+
+    # https://docs.djangoproject.com/en/4.0/ref/models/relations/#django.db.models.fields.related.RelatedManager.create
+    # user.post_set reverse relationship lookup
+    # post -> related table
