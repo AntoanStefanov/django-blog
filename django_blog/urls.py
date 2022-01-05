@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from users import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,4 +26,5 @@ urlpatterns = [
     # this will return the blog home page (making website home page same as home page of the blog app)
     # /about will hit this empty string and go to the about page of the blog, crazy stuff
     path('', include('blog.urls')),
+    path('register/', user_views.register, name='register'),
 ]
