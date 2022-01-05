@@ -6,7 +6,8 @@
     {% csrf_token %}
     <fieldset class="form-group">
       <legend class="border-bottom mb-4">Join Today</legend>
-      <!-- https://docs.djangoproject.com/en/4.0/topics/forms/#form-rendering-options -->
+      {% comment %} https://docs.djangoproject.com/en/4.0/ref/templates/builtins/#filter {% endcomment %}
+      {% comment %} https://django-crispy-forms.readthedocs.io/en/latest/filters.html?highlight=template#crispy-filter {% endcomment %}
       {{ form|crispy }}
     </fieldset>
     <div class="form-group">
