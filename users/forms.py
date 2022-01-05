@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 
 
 class UserRegisterForm(UserCreationForm):
-    email = forms.EmailField(label=("Email"))
+    email = forms.EmailField()
 
     # This class gives us a nested namespace for configurations
     # Keeps the configurations in one place
