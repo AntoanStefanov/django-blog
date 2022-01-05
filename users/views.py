@@ -12,6 +12,9 @@ def register(request):
         form = UserCreationForm(request.POST)
 
         if form.is_valid():
+            # to save/create a new user in DB -> form.save()
+            # https://docs.djangoproject.com/en/4.0/topics/forms/modelforms/#the-save-method
+            form.save()
             data = form.cleaned_data
             messages.success(request, f'Account created for {data["username"]}!')
             return HttpResponseRedirect('/')
