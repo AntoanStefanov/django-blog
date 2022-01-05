@@ -1,6 +1,5 @@
 from django.contrib import messages
-from django.http.response import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .forms import UserRegisterForm
 
@@ -18,7 +17,7 @@ def register(request):
             form.save()
             data = form.cleaned_data
             messages.success(request, f'Account created for {data["username"]}!')
-            return HttpResponseRedirect('/')
+            return redirect('blog_home')
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
