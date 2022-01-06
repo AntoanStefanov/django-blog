@@ -16,8 +16,8 @@ def register(request):
             # https://docs.djangoproject.com/en/4.0/topics/forms/modelforms/#the-save-method
             form.save()
             data = form.cleaned_data
-            messages.success(request, f'Account created for {data["username"]}!')
-            return redirect('blog_home')
+            messages.success(request, f'Your account has been created! Your are now able to log in')
+            return redirect('login')
     else:
         form = UserRegisterForm()
     return render(request, 'users/register.html', {'form': form})
