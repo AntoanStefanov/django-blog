@@ -1,3 +1,5 @@
+# https://docs.djangoproject.com/en/4.0/topics/signals/#module-django.dispatch
+
 # sender
 from django.contrib.auth.models import User
 # signal
