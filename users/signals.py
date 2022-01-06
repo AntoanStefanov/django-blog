@@ -2,16 +2,16 @@
 from django.contrib.auth.models import User
 # signal
 from django.db.models.signals import post_save
-# reciever
+# receiver
 from django.dispatch import receiver
 
-# profile model to create a profile in the reciever(the function)
+# profile model to create a profile in the receiver(the function)
 from .models import Profile
 
 # post_save signal when a user is created.
 # User model here is what we call the sender,
 # since is what is going to send the signal.
-# We need a reciever, it's going to be a function
+# We need a receiver, it's going to be a function
 # that gets this signal and then perform some task
 
 # we want to run this function every time a user is created.
