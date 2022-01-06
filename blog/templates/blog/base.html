@@ -31,7 +31,8 @@
           <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
-            <div class="navbar-nav mr-auto">
+            {% comment %} https://stackoverflow.com/questions/19733447/bootstrap-navbar-with-left-center-or-right-aligned-items {% endcomment %}
+            <div class="navbar-nav me-auto">
               <a class="nav-item nav-link" href="{% url 'blog_home' %}">Home</a>
               <a class="nav-item nav-link" href="{% url 'blog_about' %}">About</a>
             </div>
