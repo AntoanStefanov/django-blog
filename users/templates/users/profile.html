@@ -1,14 +1,33 @@
-{% extends "blog/base.html" %}
-{% load crispy_forms_tags %}
-{% block content %}
-    <div class="content-section">
-      <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.email }}</p>
-        </div>
-      </div>
-        {% comment %} form here {% endcomment %}
+{% extends "blog/base.html" %} {% load crispy_forms_tags %} {% block content %}
+<div class="content-section">
+  <div class="media">
+    <img
+      class="rounded-circle account-img"
+      src="{{ user.profile.image.url }}"
+    />
+    <div class="media-body">
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <p class="text-secondary">{{ user.email }}</p>
     </div>
+  </div>
+  <!-- special encoding type to our form. That's a need in order for our form to pass
+  our image data for the profile picture properly -->
+  <!-- without enctype looks like the form is working but
+      it won't actually be saving the image in the background 
+    hard to debug if u miss this enctype -->
+  <!-- multipart/form-data	 This value is necessary if the user will upload a file through the form -->
+  <!--  The enctype attribute can be used only if method="post". -->
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Profile Info</legend>
+      <!-- https://docs.djangoproject.com/en/4.0/ref/templates/builtins/#filter
+      https://django-crispy-forms.readthedocs.io/en/latest/filters.html?highlight=template#crispy-filter -->
+      {{ user_update_form|crispy }} {{ profile_update_form|crispy }}
+    </fieldset>
+    <div class="form-group">
+      <button class="btn btn-outline-info" type="submit">Update Profile</button>
+    </div>
+  </form>
+</div>
 {% endblock content %}
