@@ -1,5 +1,7 @@
 from django.urls import path
-from .views import PostListView, PostDetailView
+from .views import (PostListView,
+                    PostDetailView,
+                    PostCreateView)
 from . import views
 
 urlpatterns = [
@@ -13,7 +15,8 @@ urlpatterns = [
     # variable = pk becuase that is what the DetailView expects to be in order to grab the specific object
     # we can change it but we have to add attribute in our class
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
-    
+    path('post/new/', PostCreateView.as_view(), name='post_create'),
+
     # views.about handles this route 'about/'
     path('about/', views.about, name='blog_about'),
 

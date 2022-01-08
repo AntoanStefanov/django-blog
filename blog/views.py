@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
+from django.views.generic import (ListView,
+                                  DetailView,
+                                  CreateView)
 
 # .models import Post
 # .(current directory) -> models -> Post
@@ -14,12 +16,17 @@ from blog.models import Post
 
 
 def home(request):
-    # function based view
+    # function based view - not in use , PostListView is in use.
     context = {
         'posts': Post.objects.all(),
     }
     # django needs the path from the templates folder in current app to the specific template
     return render(request, 'blog/home.html', context)
+
+
+def about(request):
+    # function based view
+    return render(request, 'blog/about.html', {'title': 'About'})
 
 
 class PostListView(ListView):
@@ -51,7 +58,16 @@ class PostDetailView(DetailView):
     model = Post
     # template naming convention = <app>/<model>_<viewtype>.html
 
+class PostCreateView(CreateView):
+    # https://docs.djangoproject.com/en/4.0/ref/class-based-views/generic-editing/#createview
+    # That will be a view with a form where we create a new post
+    # so the other thing we need to provide is the
+    model = Post
+    fields = ['title', 'content']
 
-def about(request):
-    # function based view
-    return render(request, 'blog/about.html', {'title': 'About'})
+    #  override the form valid method, so that we add author before a form is submitted
+    def form_valid(self, form):
+        # take the form instance before submitting and set the author to the current logged in user
+        form.instance.author = self.request.user
+        # now validate the form
+        return super().form_valid(form)

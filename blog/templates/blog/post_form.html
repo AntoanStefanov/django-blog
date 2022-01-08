@@ -1,0 +1,21 @@
+<!-- PostCreateView view share this template with the PostUpdateView view -->
+<!-- They expect this template to be the name of the model (post) _ form, post_form -->
+
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="content-section">
+  <form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Blog Post</legend>
+      {% comment %} https://docs.djangoproject.com/en/4.0/ref/templates/builtins/#filter {% endcomment %}
+      {% comment %} https://django-crispy-forms.readthedocs.io/en/latest/filters.html?highlight=template#crispy-filter {% endcomment %}
+      {{ form|crispy }}
+    </fieldset>
+    <div class="form-group">
+      <button class="btn btn-outline-info" type="submit">Post</button>
+    </div>
+  </form>
+</div>
+{% endblock content %}
