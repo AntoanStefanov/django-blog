@@ -2,7 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (ListView,
                                   DetailView,
-                                  CreateView)
+                                  CreateView,
+                                  UpdateView,
+                                  )
 
 # .models import Post
 # .(current directory) -> models -> Post
@@ -59,9 +61,28 @@ class PostDetailView(DetailView):
     model = Post
     # template naming convention = <app>/<model>_<viewtype>.html
 
+
 class PostCreateView(LoginRequiredMixin, CreateView):
     # LoginRequiredMixin -> user should be logged in to access this page
-    
+
+    # https://docs.djangoproject.com/en/4.0/ref/class-based-views/generic-editing/#createview
+    # That will be a view with a form where we create a new post
+    # so the other thing we need to provide is the
+    model = Post
+    fields = ['title', 'content']
+
+    #  override the form valid method, so that we add author before a form is submitted
+    def form_valid(self, form):
+        # take the form instance before submitting and set the author to the current logged in user
+        form.instance.author = self.request.user
+        # now validate the form
+        return super().form_valid(form)
+
+
+class PostUpdateView(LoginRequiredMixin, UpdateView):
+    # almost same as PostCreateView
+    # LoginRequiredMixin -> user should be logged in to access this page
+
     # https://docs.djangoproject.com/en/4.0/ref/class-based-views/generic-editing/#createview
     # That will be a view with a form where we create a new post
     # so the other thing we need to provide is the

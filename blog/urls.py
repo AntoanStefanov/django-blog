@@ -1,7 +1,9 @@
 from django.urls import path
 from .views import (PostListView,
                     PostDetailView,
-                    PostCreateView)
+                    PostCreateView,
+                    PostUpdateView
+                    )
 from . import views
 
 urlpatterns = [
@@ -16,6 +18,7 @@ urlpatterns = [
     # we can change it but we have to add attribute in our class
     path('post/<int:pk>/', PostDetailView.as_view(), name='post_detail'),
     path('post/new/', PostCreateView.as_view(), name='post_create'),
+    path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post_update'),
 
     # views.about handles this route 'about/'
     path('about/', views.about, name='blog_about'),
