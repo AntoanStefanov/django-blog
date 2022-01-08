@@ -25,19 +25,23 @@ def home(request):
 class PostListView(ListView):
     # class based view
     # model tells our ListView what model to query in order to create the list,
+    # https://docs.djangoproject.com/en/4.0/ref/class-based-views/mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin.model
     model = Post
 
     # replacing default template naming convention -> <app>/<model>_<viewtype>.html
+    # https://docs.djangoproject.com/en/4.0/ref/class-based-views/mixins-simple/#django.views.generic.base.TemplateResponseMixin.template_name
     template_name = 'blog/home.html'
 
     # by default ListView class will do object_list = Post.objects.all()
     # instead of posts = Post.objects.all()
     # let the class know we want to call it 'posts' instead of 'object_list'
     # override attribute 'context_object_name'
+    # https://docs.djangoproject.com/en/4.0/ref/class-based-views/mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin.context_object_name
     context_object_name = 'posts' # same as our function view, line 19 
-    
+
     # Change order from newest post to oldest post , change query
     # ordering attribute = field we want to order on
+    # https://docs.djangoproject.com/en/4.0/ref/class-based-views/mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin.ordering
     ordering = ['-date_posted']
 
 def about(request):
