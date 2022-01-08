@@ -1,0 +1,22 @@
+{% extends "blog/base.html" %} {% block content %}
+<!-- when we use DetailView it expects the context of this template to be called object
+    we can change that in class with attribute -->
+<article class="media content-section">
+  <img
+    class="rounded-circle article-img"
+    src="{{ user.profile.image.url }}"
+    alt=""
+  />
+  <div class="media-body">
+    <div class="article-metadata">
+      <a class="mr-2" href="#">{{ object.author }}</a>
+      <!-- https://docs.djangoproject.com/en/4.0/ref/templates/builtins/#date -->
+      <small class="text-muted"
+        >{{ object.date_posted|date:'d(D)-M-Y H:i' }}</small
+      >
+    </div>
+    <h2 class="article-title">{{ object.title }}</h2>
+    <p class="article-content">{{ object.content }}</p>
+  </div>
+</article>
+{% endblock content %}

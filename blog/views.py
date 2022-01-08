@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 # .models import Post
 # .(current directory) -> models -> Post
@@ -37,12 +37,19 @@ class PostListView(ListView):
     # let the class know we want to call it 'posts' instead of 'object_list'
     # override attribute 'context_object_name'
     # https://docs.djangoproject.com/en/4.0/ref/class-based-views/mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin.context_object_name
-    context_object_name = 'posts' # same as our function view, line 19 
+    context_object_name = 'posts'  # same as our function view, line 19
 
     # Change order from newest post to oldest post , change query
     # ordering attribute = field we want to order on
     # https://docs.djangoproject.com/en/4.0/ref/class-based-views/mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin.ordering
     ordering = ['-date_posted']
+
+
+class PostDetailView(DetailView):
+    # this class based view will follow the naming conventions to see how less code we write, compare to PostListView where we broke the conventions
+    model = Post
+    # template naming convention = <app>/<model>_<viewtype>.html 
+
 
 def about(request):
     # function based view
