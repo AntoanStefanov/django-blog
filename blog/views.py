@@ -23,7 +23,7 @@ def home(request):
 
 
 class PostListView(ListView):
-    # class based view
+    # class based view - list view - to list all posts
     # model tells our ListView what model to query in order to create the list,
     # https://docs.djangoproject.com/en/4.0/ref/class-based-views/mixins-multiple-object/#django.views.generic.list.MultipleObjectMixin.model
     model = Post
@@ -46,9 +46,10 @@ class PostListView(ListView):
 
 
 class PostDetailView(DetailView):
+    # detail view to get a specific post
     # this class based view will follow the naming conventions to see how less code we write, compare to PostListView where we broke the conventions
     model = Post
-    # template naming convention = <app>/<model>_<viewtype>.html 
+    # template naming convention = <app>/<model>_<viewtype>.html
 
 
 def about(request):
