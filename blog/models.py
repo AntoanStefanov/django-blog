@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # CLASS -> TABLE IN THE DATABASE
 
@@ -47,3 +48,12 @@ class Post(models.Model):
     # https://docs.djangoproject.com/en/4.0/ref/models/relations/#django.db.models.fields.related.RelatedManager.create
     # user.post_set reverse relationship lookup
     # post -> related table
+
+    # we need get absolute path method, so that django know how to find the location to a specific post
+    # needed after PostCreateView creates a post with the form , it needs to redirect to the created post details
+    # reverse function will return the full URL to tha route as a string
+    # return the url as a astring and let the view handle the redirect for us
+
+    def get_absolute_url(self):
+        # return the path to a specific post
+        return reverse('post_detail', kwargs={'pk': self.pk})
