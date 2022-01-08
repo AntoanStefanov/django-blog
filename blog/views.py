@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import (ListView,
                                   DetailView,
                                   CreateView)
@@ -58,7 +59,9 @@ class PostDetailView(DetailView):
     model = Post
     # template naming convention = <app>/<model>_<viewtype>.html
 
-class PostCreateView(CreateView):
+class PostCreateView(LoginRequiredMixin, CreateView):
+    # LoginRequiredMixin -> user should be logged in to access this page
+    
     # https://docs.djangoproject.com/en/4.0/ref/class-based-views/generic-editing/#createview
     # That will be a view with a form where we create a new post
     # so the other thing we need to provide is the
