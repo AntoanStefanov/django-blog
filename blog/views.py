@@ -35,6 +35,10 @@ class PostListView(ListView):
     # let the class know we want to call it 'posts' instead of 'object_list'
     # override attribute 'context_object_name'
     context_object_name = 'posts' # same as our function view, line 19 
+    
+    # Change order from newest post to oldest post , change query
+    # ordering attribute = field we want to order on
+    ordering = ['-date_posted']
 
 def about(request):
     # function based view
