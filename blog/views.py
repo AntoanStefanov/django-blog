@@ -61,6 +61,7 @@ class PostDetailView(DetailView):
     # this class based view will follow the naming conventions to see how less code we write, compare to PostListView where we broke the conventions
     model = Post
     # template naming convention = <app>/<model>_<viewtype>.html
+    # template for this class is post_detail.html
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
@@ -78,6 +79,8 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         # now validate the form
         return super().form_valid(form)
+
+    # template for this class is post_form_.html
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
@@ -104,10 +107,13 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
+    # template for this class is post_form_.html
+
 
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     # Mixins should be to the left of the View inheritance
     model = Post
+    success_url = '/'
 
     def test_func(self):
         # if current user == post's user, then you can update it
@@ -115,3 +121,5 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         if self.request.user == post.author:
             return True
         return False
+
+    # template for this class is post_confirm_delete.html
