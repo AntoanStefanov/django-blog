@@ -17,16 +17,18 @@
       >
       <!-- user is currently logged in user -->
       {% if object.author == user %}
-      <a
-        class="btn btn-secondary btn-sm mt-1 mb-1"
-        href="{% url 'post_update' object.id %}"
-        >Update Post</a
-      >
-      <a
-        class="btn btn-danger btn-sm mt-1 mb-1"
-        href="{% url 'post_delete' object.id %}"
-        >Delete Post</a
-      >
+      <div>
+        <a
+          class="btn btn-secondary btn-sm mt-1 mb-1"
+          href="{% url 'post_update' object.id %}"
+          >Update Post</a
+        >
+        <a
+          class="btn btn-danger btn-sm mt-1 mb-1"
+          href="{% url 'post_delete' object.id %}"
+          >Delete Post</a
+        >
+      </div>
       {% endif %}
     </div>
     <h2 class="article-title">{{ object.title }}</h2>
