@@ -113,6 +113,7 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     # Mixins should be to the left of the View inheritance
     model = Post
+    # home page
     success_url = '/'
 
     def test_func(self):

@@ -16,7 +16,7 @@
         >{{ object.date_posted|date:'d(D)-M-Y H:i' }}</small
       >
       <!-- user is currently logged in user -->
-      {% if object.author == user %}
+      {% if object.author == user or user.is_superuser %}
       <div>
         <a
           class="btn btn-secondary btn-sm mt-1 mb-1"
