@@ -60,7 +60,7 @@ class PostDetailView(DetailView):
     # detail view to get a specific post
     # this class based view will follow the naming conventions to see how less code we write, compare to PostListView where we broke the conventions
     model = Post
-    # template naming convention = <app>/<model>_<viewtype>.html
+    # template naming convention = <app>/<model>_<viewtype>.html that the class looks for
     # template for this class is post_detail.html
 
 
