@@ -14,11 +14,11 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    # when I make a change in a model , also it will make a change in the DB 
+    # when I make a change in a model , also it will make a change in the DB
     # to apply changes -> make migrations(prepare SQL code) -> migrate(update the DB)
 
-    def save(self):
-        super().save()
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
 
         img = Image.open(self.image.path)
 
