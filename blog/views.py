@@ -80,7 +80,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
         # now validate the form
         return super().form_valid(form)
 
-    # template for this class is post_form_.html
+    # template for this class is post_form.html
 
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
