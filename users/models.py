@@ -1,13 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 from PIL import Image
-# Create your models here.
 
 
 class Profile(models.Model):
     # cascade -> if user is deleted, delete the profile too
     # but if we delete the profile, it won't delete the user
-    # JUST ONE WAY thing
+    # JUST ONE WAY thing , MAKE IT TWO WAY THING
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     image = models.ImageField(default='default.jpg', upload_to='profile_pics')
 

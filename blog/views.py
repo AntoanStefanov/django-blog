@@ -103,7 +103,8 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     def test_func(self):
         # if current user == post's user, then you can update it
         post = self.get_object()
-        if self.request.user == post.author:
+        current_user = self.request.user
+        if current_user == post.author or current_user.is_superuser:
             return True
         return False
 
@@ -119,7 +120,8 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         # if current user == post's user, then you can update it
         post = self.get_object()
-        if self.request.user == post.author:
+        current_user = self.request.user
+        if current_user == post.author or current_user.is_superuser:
             return True
         return False
 
